@@ -24,7 +24,8 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      toast.error(error.response.data.message || "An error occurred");
+      // toast.error(error.response.data.message || "An error occurred");
+      // Allow components to handle errors individually
     }
     return Promise.reject(error);
   }

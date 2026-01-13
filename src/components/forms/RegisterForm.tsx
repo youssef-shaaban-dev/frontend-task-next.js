@@ -32,7 +32,12 @@ const RegisterForm = () => {
     });
 
     const onSubmit = (data: RegisterFormValues) => {
-        register(data);
+        register(data, {
+            onError: (error: any) => {
+                const message = error?.response?.data?.message || "Registration failed";
+                form.setError("root", { message });
+            }
+        });
     };
 
     return (
@@ -122,6 +127,12 @@ const RegisterForm = () => {
                 <Button type="submit" className="w-full" disabled={isPending}>
                     {isPending ? "Creating Account..." : "Register"}
                 </Button>
+
+                {form.formState.errors.root && (
+                    <div className="text-red-500 text-sm text-center">
+                        {form.formState.errors.root.message}
+                    </div>
+                )}
 
                 <div className="text-center text-sm">
                     Already have an account?{" "}

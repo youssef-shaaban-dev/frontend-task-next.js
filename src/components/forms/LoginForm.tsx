@@ -30,10 +30,17 @@ const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess?: () => void }) 
     });
 
     const onSubmit = (data: LoginFormValues) => {
-        loginMutate(data);
-        if (handleLoginSuccess) {
-            handleLoginSuccess();
-        }
+        loginMutate(data, {
+            onSuccess: () => {
+                if (handleLoginSuccess) {
+                    handleLoginSuccess();
+                }
+            },
+            onError: (error: any) => {
+                const message = error?.response?.data?.message || "Invalid credentials";
+                form.setError("root", { message });
+            }
+        });
     };
 
     return (
@@ -71,6 +78,12 @@ const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess?: () => void }) 
                 <Button type="submit" className="w-full" disabled={isPending}>
                     {isPending ? "Logging in..." : "Login"}
                 </Button>
+
+                {form.formState.errors.root && (
+                    <div className="text-red-500 text-sm text-center">
+                        {form.formState.errors.root.message}
+                    </div>
+                )}
 
                 <div className="text-center text-sm">
                     Don&apos;t have an account?{" "}
