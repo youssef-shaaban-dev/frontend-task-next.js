@@ -10,7 +10,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Navbar />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-12 md:px-12 md:py-16">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-500 mb-8">
           <span className="hover:text-gray-900 cursor-pointer">Home</span>

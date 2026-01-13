@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
+// import Image from 'next/image';
 
-const images = [
-    "/placeholder_main.png", // We'll handle images differently, using placeholders for now
-    "/placeholder_1.png",
-    "/placeholder_2.png",
-    "/placeholder_3.png"
-];
+// const images = [
+//     "/placeholder_main.png", 
+//     "/placeholder_1.png",
+//     "/placeholder_2.png",
+//     "/placeholder_3.png"
+// ];
 
 const ProductGallery = () => {
     const [selectedImage, setSelectedImage] = useState(0);

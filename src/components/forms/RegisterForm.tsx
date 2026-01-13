@@ -2,8 +2,8 @@
 
 import { useRegister } from "@/hooks/useRegister";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,26 +15,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const RegisterSchema = z
-    .object({
-        name: z.string().min(2, "Name must be at least 2 characters"),
-        email: z.string().email("Invalid email address"),
-        password: z.string().min(6, "Password must be at least 6 characters"),
-        passwordConfirmation: z.string().min(6),
-        mobile: z
-            .string()
-            .regex(/^[0-9]+$/, "Mobile must contain only numbers")
-            .min(10, "Mobile number must be at least 10 digits"),
-
-        mobileCountryCode: z.string().min(1, "Country code is required"),
-    })
-    .refine((data) => data.password === data.passwordConfirmation, {
-        message: "Passwords do not match",
-        path: ["passwordConfirmation"],
-    });
-
-type RegisterFormValues = z.infer<typeof RegisterSchema>;
+import { RegisterSchema, RegisterFormValues } from "@/lib/validations/authSchema";
 
 const RegisterForm = () => {
     const { mutate: register, isPending } = useRegister();
@@ -141,6 +122,13 @@ const RegisterForm = () => {
                 <Button type="submit" className="w-full" disabled={isPending}>
                     {isPending ? "Creating Account..." : "Register"}
                 </Button>
+
+                <div className="text-center text-sm">
+                    Already have an account?{" "}
+                    <Link href="/login" className="font-semibold text-[#BE968E] hover:underline">
+                        Login
+                    </Link>
+                </div>
             </form>
         </Form>
     );

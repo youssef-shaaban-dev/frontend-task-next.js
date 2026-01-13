@@ -1,8 +1,8 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,20 +15,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useLogin } from "@/hooks/useLogin";
+import { LoginSchema, LoginFormValues } from "@/lib/validations/authSchema";
 
-const loginSchema = z.object({
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-});
+const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess?: () => void }) => {
 
-type LoginFormValues = z.infer<typeof loginSchema>;
-
-const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess: () => void }) => {
-
-    const { mutate: loginMutate } = useLogin();
+    const { mutate: loginMutate, isPending } = useLogin();
 
     const form = useForm<LoginFormValues>({
-        resolver: zodResolver(loginSchema),
+        resolver: zodResolver(LoginSchema),
         defaultValues: {
             email: "",
             password: "",
@@ -36,9 +30,10 @@ const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess: () => void }) =
     });
 
     const onSubmit = (data: LoginFormValues) => {
-        console.log(data);
         loginMutate(data);
-        handleLoginSuccess();
+        if (handleLoginSuccess) {
+            handleLoginSuccess();
+        }
     };
 
     return (
@@ -73,9 +68,16 @@ const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess: () => void }) =
                     )}
                 />
 
-                <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-                    Login
+                <Button type="submit" className="w-full" disabled={isPending}>
+                    {isPending ? "Logging in..." : "Login"}
                 </Button>
+
+                <div className="text-center text-sm">
+                    Don&apos;t have an account?{" "}
+                    <Link href="/register" className="font-semibold text-[#BE968E] hover:underline">
+                        Register
+                    </Link>
+                </div>
             </form>
         </Form>
     );

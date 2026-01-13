@@ -9,6 +9,7 @@ const DashboardPage = () => {
         // Ensure this runs on client only
         const storedName = localStorage.getItem("userName");
         if (storedName) {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             setName(storedName);
         }
     }, []);

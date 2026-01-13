@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 const ProductInfo = () => {
     const [quantity, setQuantity] = useState(1);
     const [selectedColor, setSelectedColor] = useState('blue');
-    const [selectedSize, setSelectedSize] = useState('M');
+    // const [selectedSize, setSelectedSize] = useState('M');
 
     return (
         <div className="flex flex-col gap-6">
