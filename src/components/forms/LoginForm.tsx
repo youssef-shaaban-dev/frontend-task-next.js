@@ -14,6 +14,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useLogin } from "@/hooks/useLogin";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -23,6 +24,8 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess: () => void }) => {
+
+    const { mutate: loginMutate } = useLogin();
 
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
@@ -34,6 +37,7 @@ const LoginForm = ({ handleLoginSuccess }: { handleLoginSuccess: () => void }) =
 
     const onSubmit = (data: LoginFormValues) => {
         console.log(data);
+        loginMutate(data);
         handleLoginSuccess();
     };
 

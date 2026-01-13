@@ -1,5 +1,6 @@
 "use client";
 
+import { useRegister } from "@/hooks/useRegister";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,6 +37,7 @@ const RegisterSchema = z
 type RegisterFormValues = z.infer<typeof RegisterSchema>;
 
 const RegisterForm = () => {
+    const { mutate: register, isPending } = useRegister();
     const form = useForm<RegisterFormValues>({
         resolver: zodResolver(RegisterSchema),
         defaultValues: {
@@ -49,7 +51,7 @@ const RegisterForm = () => {
     });
 
     const onSubmit = (data: RegisterFormValues) => {
-        console.log(data);
+        register(data);
     };
 
     return (
@@ -136,8 +138,8 @@ const RegisterForm = () => {
                     )}
                 />
 
-                <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-                    Register
+                <Button type="submit" className="w-full" disabled={isPending}>
+                    {isPending ? "Creating Account..." : "Register"}
                 </Button>
             </form>
         </Form>

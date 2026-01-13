@@ -1,78 +1,64 @@
-# Next.js Authentication Task
+# Frontend Task - Next.js
 
-This project is a frontend authentication task built using **Next.js (App Router)** and **TypeScript**.  
-It includes a complete authentication flow with API integration and a protected dashboard.
+## Project Overview
+This project implements a Frontend Task using Next.js, including a full Authentication flow and a pixel-perfect Product Details page.
 
----
+## Features
+- **Authentication**:
+  - Register (Name, Email, Password, Mobile)
+  - Verify Account (OTP)
+  - Login (Email, Password)
+  - Dashboard (Protected Route)
+- **UI Implementation**:
+  - Pixel-perfect Product Details Page (Home)
+  - Responsive Design (Desktop & Mobile)
+  - Modern UI components using Tailwind CSS
 
-## 🚀 Features
+## Tech Stack
+- Next.js 15+ (App Router)
+- React 19
+- Tailwind CSS 4
+- React Hook Form + Zod (Validation)
+- Lucide React (Icons)
+- Axios (API Integration)
 
-- User Registration
-- Account Verification (Verification Code: **123456**)
-- User Login
-- Token handling using `localStorage`
-- Protected Dashboard route
-- Responsive design (Desktop & Mobile)
-- Clean and scalable project structure
+## Setup Instructions
 
----
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd nextjs-task
+    ```
 
-## 🛠️ Tech Stack
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-- Next.js (App Router)
-- TypeScript
-- React
-- Tailwind CSS
-- Axios
-- React Hook Form + Zod
+3.  **Environment Setup:**
+    Ensure you have a `.env` file with:
+    ```env
+    NEXT_PUBLIC_API_BASE_URL= https://tinytales.trendline.marketing/api
+    ```
 
----
+4.  **Run Development Server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## 📂 Project Structure
+5.  **Build for Production:**
+    ```bash
+    npm run build
+    npm start
+    ```
 
-```txt
-app/
- ├─ (auth)/
- │   ├─ login/
- │   ├─ register/
- │   ├─ verify/
- ├─ dashboard/
-components/
-lib/
-store/
-types/
+## Project Structure
+- `src/app`: App Router pages and layouts.
+- `src/components/forms`: Auth forms (Register, Login, Verify).
+- `src/components/product`: Product Page components (Navbar, Gallery, Info, etc.).
+- `src/services`: API service functions.
+- `src/hooks`: Custom hooks (useLogin, useRegister, useVerify).
 
-⚙️ Setup & Installation
-1. Clone the repository
-git clone https://github.com/your-username/nextjs-task.git
-
-2. Install dependencies
-npm install
-
-3. Create a .env.local file
-NEXT_PUBLIC_API_URL=YOUR_API_BASE_URL
-
-4. Run the project
-npm run dev
-
-
-The app will be available at:
-
-http://localhost:3000
-
-🔐 Authentication Flow
-
-Register with user details
-
-Verify account using the code: 123456
-
-Login with email and password
-
-Upon successful login, a token is saved in localStorage
-
-User is redirected to a protected Dashboard page
-
-🌍 Live Demo
-
-👉 Live Demo:
-https://your-project.vercel.app
+## Notes
+- Testing Verification Code: `123456`

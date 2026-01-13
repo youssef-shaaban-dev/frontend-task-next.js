@@ -1,5 +1,6 @@
 "use client";
 
+import { useVerify } from "@/hooks/useVerify";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -17,8 +18,6 @@ import {
     InputOTPGroup,
     InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useRouter } from "next/navigation";
-
 import { z } from "zod";
 
 export const verifySchema = z.object({
@@ -31,8 +30,8 @@ export const verifySchema = z.object({
 export type VerifyFormValues = z.infer<typeof verifySchema>;
 
 const VerifyForm = () => {
-    const router = useRouter();
-    
+    const { mutate: verify, isPending } = useVerify();
+
     const form = useForm<VerifyFormValues>({
         resolver: zodResolver(verifySchema),
         defaultValues: {
@@ -41,15 +40,7 @@ const VerifyForm = () => {
     });
 
     const onSubmit = (data: VerifyFormValues) => {
-        if (data.code !== "123456") {
-            form.setError("code", {
-                message: "Invalid verification code",
-            });
-            return;
-        }
-
-        // success
-        router.push("/dashboard");
+        verify({ verificationCode: data.code });
     };
 
 
@@ -82,9 +73,9 @@ const VerifyForm = () => {
                 <Button
                     type="submit"
                     className="w-full"
-                    disabled={form.formState.isSubmitting}
+                    disabled={isPending}
                 >
-                    Verify
+                    {isPending ? "Verifying..." : "Verify"}
                 </Button>
             </form>
         </Form>
