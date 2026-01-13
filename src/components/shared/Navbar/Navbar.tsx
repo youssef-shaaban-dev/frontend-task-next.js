@@ -1,45 +1,65 @@
-import { Search, ShoppingBag, Heart, User, Menu } from 'lucide-react';
+import { ShoppingBag, Heart, User, Home, LayoutGrid, MousePointerClick, Captions, BadgeInfo, Bell, Languages } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
+
+const DesktopMenuItems = [
+    { name: 'Home', href: '/', icon: <Home className="w-5 h-5" /> },
+    { name: 'Our Category', href: 'our-category', icon: <LayoutGrid className="w-5 h-5" /> },
+    { name: 'About Us', href: '/about', icon: <MousePointerClick className="w-5 h-5" /> },
+    { name: 'Contact Us', href: '/contact', icon: <Captions className="w-5 h-5" /> },
+    { name: 'FAQs', href: '/faqs', icon: <BadgeInfo className="w-5 h-5" /> },
+];
+
+const IconsButtons = [
+    { name: 'Shopping Bag', icon: <ShoppingBag className="w-5 h-5" /> },
+    { name: 'Notification', icon: <Bell className="w-5 h-5" /> },
+    { name: 'Wishlist', icon: <Heart className="w-5 h-5" /> },
+    { name: 'Language', icon: <Languages className="w-5 h-5" /> },
+    { name: 'User Account', icon: <User className="w-5 h-5" /> },
+];
 
 const Navbar = () => {
     return (
-        <nav className="border-b bg-white">
-            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <nav className="border-b bg-white ">
+            <div className="  flex items-center justify-between section-padding">
                 {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-orange-500">
-                        Toprate
-                    </div>
-                </div>
+                <Link href="/" className="flex items-center gap-2">
+                    <Image src="/logo.png"
+                        alt="Logo"
+                        width={65}
+                        height={51}
+                        loading="eager"
+                        className="w-16 h-12"
+                    />
+                </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-                    <Link href="#" className="hover:text-orange-500">Home</Link>
-                    <Link href="#" className="hover:text-orange-500">Our Categories</Link>
-                    <Link href="#" className="hover:text-orange-500">About Us</Link>
-                    <Link href="#" className="hover:text-orange-500">Contact Us</Link>
-                    <Link href="#" className="hover:text-orange-500">FAQs</Link>
+                <div className="hidden md:flex items-center gap-8 text-sm font-normal text-black-200">
+                    {DesktopMenuItems.map((item) => (
+                        <Link
+                            key={item.name}
+                            href={item.href}
+                            className="hover:text-orange-500 flex items-center"
+                        >
+                            {item.icon}
+                            <span className="ml-2 text-black-200 font-normal">{item.name}</span>
+                        </Link>
+                    ))}
                 </div>
 
                 {/* Icons */}
-                <div className="flex items-center gap-4 text-gray-600">
-                    <button className="hover:text-orange-500">
-                        <Search className="w-5 h-5" />
-                    </button>
-                    <button className="hover:text-orange-500 relative">
-                        <ShoppingBag className="w-5 h-5" />
-                        <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
-                    </button>
-                    <button className="hover:text-orange-500">
-                        <Heart className="w-5 h-5" />
-                    </button>
-                    <Link href="/login" className="hover:text-orange-500 flex items-center gap-1">
-                        <User className="w-5 h-5" />
-                    </Link>
-                    <button className="md:hidden hover:text-orange-500">
-                        <Menu className="w-5 h-5" />
-                    </button>
+                <div className="flex items-center gap-4 text-black-200">
+                    {IconsButtons.map((item) => (
+                        <button
+                            key={item.name}
+                            className="hover:text-orange-500 cursor-pointer"
+                            aria-label={item.name}
+                        >
+                            {item.icon}
+                        </button>
+                    ))}
                 </div>
+
             </div>
         </nav>
     );

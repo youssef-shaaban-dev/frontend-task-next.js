@@ -1,24 +1,41 @@
-import Navbar from "@/components/shared/Navbar/Navbar";
-import Footer from "@/components/shared/Footer/Footer";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
 import ReviewsSection from "@/components/product/ReviewsSection";
 import SimilarItems from "@/components/product/SimilarItems";
+import Link from "next/link";
+
+const Breadcrumb = () => {
+  return (
+    <div className="text-sm text-gray-500 mb-8 bg-[#ECECEC66] p-4 rounded-2xl">
+      <Link
+        href="/"
+        className="text-gray-900 cursor-pointer"
+      >Home</Link>
+      <span className="mx-2">&gt;</span>
+      <Link
+        href="/our-category"
+        className="text-gray-900 cursor-pointer"
+      >Our category</Link>
+      <span className="mx-2">&gt;</span>
+      <Link
+        href="/"
+        className="font-medium"
+      >Product Details</Link>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
 
-      <div className="container mx-auto px-6 py-12 md:px-12 md:py-16">
+      <div className="h-[200px] bg-[#ECECEC66] w-full flex items-center justify-center">
+        <h1 className="text-3xl font-semibold text-black ">Product Details</h1>
+      </div>
+
+      <div className="section-padding">
         {/* Breadcrumb */}
-        <div className="text-sm text-gray-500 mb-8">
-          <span className="hover:text-gray-900 cursor-pointer">Home</span>
-          <span className="mx-2">&gt;</span>
-          <span className="hover:text-gray-900 cursor-pointer">Our category</span>
-          <span className="mx-2">&gt;</span>
-          <span className="text-gray-900 font-medium">Product Details</span>
-        </div>
+        <Breadcrumb />
 
         {/* Product Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -34,7 +51,6 @@ export default function Home() {
 
       </div>
 
-      <Footer />
     </main>
   );
 }
