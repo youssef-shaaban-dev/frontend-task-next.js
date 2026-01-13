@@ -1,66 +1,86 @@
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+"use client";
+
+import Image from "next/image";
+import { Facebook, Twitter, Instagram, Linkedin, Send } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="bg-[#3D3D3D] text-white pt-12 pb-6">
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <footer className="bg-[#4D4139] text-white pt-16 pb-8 font-poppins relative overflow-hidden">
+            <div className="container mx-auto px-6 lg:px-12 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
-                    <div>
-                        <div className="text-2xl font-bold text-orange-500 mb-4">Toprate</div>
-                        <p className="text-gray-400 text-sm leading-relaxed">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-2">
+                            {/* Placeholder for the Tinytales logo */}
+                           <Image src="/logo.png" alt="Logo" width={100} height={100} className="text-2xl font-bold text-orange-500 mb-4" />
+                        </div>
+                        <p className="text-gray-300 text-sm leading-relaxed max-w-xs">
+                            Ipsam in eos qui consequatur ab cum maxime. Soluta dolor quae Ipsam in eos qui consequatur ab.
                         </p>
                     </div>
 
-                    {/* Links */}
+                    {/* Links - Let Us Help */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Let Us Help</h3>
-                        <ul className="space-y-2 text-gray-400 text-sm">
-                            <li><a href="#" className="hover:text-orange-500">My Account</a></li>
-                            <li><a href="#" className="hover:text-orange-500">FAQs</a></li>
-                            <li><a href="#" className="hover:text-orange-500">Categories</a></li>
-                            <li><a href="#" className="hover:text-orange-500">Shipping & Returns</a></li>
+                        <h3 className="text-xl font-bold mb-6 text-white">Let Us Help</h3>
+                        <ul className="space-y-3 text-gray-300 text-sm">
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">My Account</a></li>
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">FAQs</a></li>
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">Categories</a></li>
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">All Products</a></li>
                         </ul>
                     </div>
 
-                    {/* Policies */}
+                    {/* Links - Policies */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Policies</h3>
-                        <ul className="space-y-2 text-gray-400 text-sm">
-                            <li><a href="#" className="hover:text-orange-500">Security Policy</a></li>
-                            <li><a href="#" className="hover:text-orange-500">Privacy Policy</a></li>
-                            <li><a href="#" className="hover:text-orange-500">Terms of Use</a></li>
+                        <h3 className="text-xl font-bold mb-6 text-white">Policies</h3>
+                        <ul className="space-y-3 text-gray-300 text-sm">
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">Refund Policy</a></li>
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">About Us</a></li>
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">Cancellation Policy</a></li>
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">Terms and Conditions</a></li>
+                            <li><a href="#" className="hover:text-[#BE968E] transition-colors">Privacy Policy</a></li>
                         </ul>
                     </div>
 
-                    {/* Newsletter */}
+                    {/* Send Email */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Send Email</h3>
-                        <div className="flex gap-2">
+                        <h3 className="text-xl font-bold mb-6 text-white">Send Email</h3>
+                        <div className="relative mb-8">
                             <input
                                 type="email"
                                 placeholder="Email address"
-                                className="bg-white text-gray-900 px-4 py-2 rounded flex-1 text-sm outline-none"
+                                className="w-full bg-white text-gray-900 pl-4 pr-24 py-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#BE968E]"
                             />
-                            <button className="bg-[#D4A373] hover:bg-[#c29060] text-white px-4 py-2 rounded text-sm font-medium">
+                            <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-[#BE968E] hover:bg-[#a8857d] text-white px-6 rounded-lg text-sm font-medium transition-colors">
                                 Send
                             </button>
                         </div>
-                        <div className="mt-6">
-                            <h4 className="text-sm font-semibold mb-3">Follow Us</h4>
+
+                        <div>
+                            <h4 className="text-base font-bold mb-4 text-white">Follow Us</h4>
                             <div className="flex gap-4">
-                                <a href="#" className="hover:text-orange-500"><Facebook className="w-5 h-5" /></a>
-                                <a href="#" className="hover:text-orange-500"><Twitter className="w-5 h-5" /></a>
-                                <a href="#" className="hover:text-orange-500"><Instagram className="w-5 h-5" /></a>
-                                <a href="#" className="hover:text-orange-500"><Linkedin className="w-5 h-5" /></a>
+                                <a href="#" className="text-white hover:text-[#BE968E] transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20">
+                                    <Facebook className="w-4 h-4" />
+                                </a>
+                                <a href="#" className="text-white hover:text-[#BE968E] transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20">
+                                    <Twitter className="w-4 h-4" />
+                                </a>
+                                <a href="#" className="text-white hover:text-[#BE968E] transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20">
+                                    <Instagram className="w-4 h-4" />
+                                </a>
+                                <a href="#" className="text-white hover:text-[#BE968E] transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20">
+                                    <Linkedin className="w-4 h-4" />
+                                </a>
+                                <a href="#" className="text-white hover:text-[#BE968E] transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /></svg>
+                                </a>
+                                <a href="#" className="text-white hover:text-[#BE968E] transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20">
+                                    <Send className="w-4 h-4" />
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-xs">
-                © 2024 Toprate. All Rights Reserved.
             </div>
         </footer>
     );

@@ -11,11 +11,11 @@ const DesktopMenuItems = [
 ];
 
 const IconsButtons = [
-    { name: 'Shopping Bag', icon: <ShoppingBag className="w-5 h-5" /> },
-    { name: 'Notification', icon: <Bell className="w-5 h-5" /> },
-    { name: 'Wishlist', icon: <Heart className="w-5 h-5" /> },
-    { name: 'Language', icon: <Languages className="w-5 h-5" /> },
-    { name: 'User Account', icon: <User className="w-5 h-5" /> },
+    { name: 'Shopping Bag', icon: <ShoppingBag className="w-5 h-5" /> , href: '/cart' },
+    { name: 'Notification', icon: <Bell className="w-5 h-5" /> , href: '/notification' },
+    { name: 'Wishlist', icon: <Heart className="w-5 h-5" /> , href: '/wishlist' },
+    { name: 'Language', icon: <Languages className="w-5 h-5" /> , href: '/language' },
+    { name: 'User Account', icon: <User className="w-5 h-5" /> , href: '/login' },
 ];
 
 const Navbar = () => {
@@ -50,13 +50,14 @@ const Navbar = () => {
                 {/* Icons */}
                 <div className="flex items-center gap-4 text-black-200">
                     {IconsButtons.map((item) => (
-                        <button
+                        <Link
                             key={item.name}
+                            href={item?.href}
                             className="hover:text-orange-500 cursor-pointer"
                             aria-label={item.name}
                         >
                             {item.icon}
-                        </button>
+                        </Link>
                     ))}
                 </div>
 

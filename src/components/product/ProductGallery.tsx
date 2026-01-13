@@ -1,60 +1,93 @@
 "use client";
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-// import Image from 'next/image';
 
-// const images = [
-//     "/placeholder_main.png", 
-//     "/placeholder_1.png",
-//     "/placeholder_2.png",
-//     "/placeholder_3.png"
-// ];
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+
+const IMAGES = [
+    "/products/produc-1.png",
+    "/products/produc-2.png",
+    "/products/produc-3.png",
+    "/products/produc-4.png",
+];
 
 const ProductGallery = () => {
-    const [selectedImage, setSelectedImage] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const nextImage = () => {
+        setActiveIndex((prev) => (prev + 1) % IMAGES.length);
+    };
+
+    const prevImage = () => {
+        setActiveIndex((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
+    };
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
             {/* Main Image */}
-            <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 group">
+            <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-gray-100">
+                <Image
+                    src={IMAGES[activeIndex]}
+                    alt={`Product image ${activeIndex + 1}`}
+                    fill
+                    className="object-cover"
+                    priority
+                />
+
                 {/* Navigation Arrows */}
                 <button
-                    onClick={() => setSelectedImage((prev) => (prev > 0 ? prev - 1 : prev))}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center hover:bg-white transition-opacity opacity-0 group-hover:opacity-100 shadow-sm"
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
                 >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronLeft className="h-6 w-6 text-gray-600" />
                 </button>
-
-                <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                    <span className="text-gray-400">Image {selectedImage + 1}</span>
-                    {/* Real implementation would use Next.js Image component with src={images[selectedImage]} */}
-                </div>
-
                 <button
-                    onClick={() => setSelectedImage((prev) => (prev < 3 ? prev + 1 : prev))}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center hover:bg-white transition-opacity opacity-0 group-hover:opacity-100 shadow-sm"
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[#BE968E] shadow-sm backdrop-blur-sm transition-colors hover:bg-[#a8857d]"
                 >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="h-6 w-6 text-white" />
                 </button>
+
+                {/* Top Bar Indicator (Simulated from design) */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    {IMAGES.map((_, idx) => (
+                        <div
+                            key={idx}
+                            className={cn(
+                                "h-1 w-8 rounded-full transition-colors",
+                                idx === activeIndex ? "bg-white" : "bg-white/30"
+                            )}
+                        />
+                    ))}
+                </div>
             </div>
 
             {/* Thumbnails */}
             <div className="flex gap-4 overflow-x-auto pb-2">
-                {[0, 1, 2].map((idx) => (
+                {IMAGES.map((img, idx) => (
                     <button
                         key={idx}
-                        onClick={() => setSelectedImage(idx)}
-                        className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 flex-shrink-0 bg-gray-100 ${selectedImage === idx ? 'border-gray-900' : 'border-transparent'
-                            }`}
+                        onClick={() => setActiveIndex(idx)}
+                        className={cn(
+                            "relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all",
+                            activeIndex === idx
+                                ? "border-[#BE968E]"
+                                : "border-transparent opacity-70 hover:opacity-100"
+                        )}
                     >
-                        <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-xs text-gray-400">Thumb {idx + 1}</span>
-                        </div>
+                     
+                     <Image
+                            src={img}
+                            alt={`Thumbnail ${idx + 1}`}
+                            fill
+                            className="object-cover"
+                        />
+
                     </button>
                 ))}
-                <button className="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-transparent flex-shrink-0 bg-black text-white flex items-center justify-center font-semibold">
-                    +2
-                </button>
+
+
             </div>
         </div>
     );

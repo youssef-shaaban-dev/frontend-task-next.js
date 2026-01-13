@@ -1,75 +1,94 @@
+"use client";
+
 import { Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const ReviewsSection = () => {
     return (
-        <div className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 border-b pb-4 inline-block border-[#C28562]">Rating & Reviews</h2>
+        <section className="font-poppins text-black pr-16">
+            <h2 className="text-xl font-bold bg-white text-black mb-8 border-b-2 border-[#BE968E] w-fit pb-2">
+                Rating & Reviews
+            </h2>
 
-            <div className="flex flex-col md:flex-row gap-12">
-                {/* Rating Summary */}
-                <div className="flex-1 max-w-sm">
-                    <div className="flex items-end gap-4 mb-8">
-                        <div className="text-6xl font-bold text-gray-900">4.5</div>
-                        <div className="text-gray-400 pb-2">/5</div>
-                    </div>
-
-                    {/* Bars */}
-                    <div className="space-y-3">
-                        {[5, 4, 3, 2, 1].map((star) => (
-                            <div key={star} className="flex items-center gap-4">
-                                <div className="flex items-center gap-1 w-8 text-sm text-gray-600">
-                                    <Star className="w-3 h-3 fill-orange-400 text-orange-400" /> {star}
-                                </div>
-                                <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                                    <div
-                                        className="h-full bg-[#C28562] rounded-full"
-                                        style={{ width: star === 5 ? '70%' : star === 4 ? '15%' : '5%' }}
-                                    />
-                                </div>
-                                <div className="text-xs text-gray-400 w-8">{star === 5 ? '1.5k' : '200'}</div>
-                            </div>
-                        ))}
-                    </div>
+            <div className="flex flex-col lg:flex-row gap-12 items-start justify-between">
+                {/* Left: Rating Number */}
+                <div className="flex items-end gap-2">
+                    <span className="text-8xl font-medium">4,5</span>
+                    <span className="text-gray-400 text-xl font-medium mb-2">/5</span>
                 </div>
 
-                {/* Total Reviews & Action */}
-                <div className="flex flex-col items-start justify-center">
-                    <div className="text-sm text-gray-500 mb-2">Total Reviews</div>
-                    <div className="text-4xl font-bold text-gray-900 mb-4">3.0K</div>
-                    <Button variant="outline" className="bg-[#C28562] text-white hover:bg-[#a87051] border-none">
-                        Add Comment
+                {/* Middle: Progress Bars */}
+                <div className="flex-1 w-full max-w-md space-y-2">
+                    {[
+                        { star: 5, pct: 67 },
+                        { star: 4, pct: 15 },
+                        { star: 3, pct: 6 },
+                        { star: 2, pct: 3 },
+                        { star: 1, pct: 9 }
+                    ].map((item) => (
+                        <div key={item.star} className="flex items-center gap-3">
+                            <div className="flex items-center gap-1 w-8 text-sm font-medium text-gray-500">
+                                <Star className="w-4 h-4 fill-[#BE968E] text-[#BE968E]" /> {item.star}
+                            </div>
+                            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                <div
+                                    className="h-full bg-[#BE968E] rounded-full"
+                                    style={{ width: `${item.pct}%` }}
+                                />
+                            </div>
+                            <div className="text-xs font-medium text-gray-400 w-8 text-right">%{item.pct}</div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Right: Total Reviews & Add Comment */}
+                <div className="flex flex-col items-center justify-center gap-4">
+                    <div className="text-center ">
+                        <div className="text-sm text-gray-400">Total Reviews</div>
+                        <div className="text-4xl font-bold">3.0K</div>
+                    </div>
+                    <Button className="bg-[#BE968E] hover:bg-[#a8857d] text-white rounded-lg px-6">
+                        Add Comment <span className="ml-2 bg-white/20 rounded-full w-4 h-4 flex items-center justify-center text-[10px]">...</span>
                     </Button>
                 </div>
             </div>
 
             {/* Review List */}
-            <div className="mt-12 space-y-8">
+            <div className="mt-12 space-y-10">
                 {[1, 2, 3].map((i) => (
-                    <div key={i} className="border-b pb-8">
+                    <div key={i} className="">
                         <div className="flex justify-between items-start mb-2">
-                            <h4 className="font-bold text-gray-900">Alex Doesrun</h4>
-                            <span className="text-sm text-gray-400">2 months ago</span>
+                            <div className="flex items-center gap-3">
+                                <h4 className="font-bold text-lg">Alex Daewn</h4>
+                                <div className="flex gap-0.5">
+                                    {[1, 2, 3, 4, 5].map(s => (
+                                        <Star key={s} className="w-4 h-4 fill-[#BE968E] text-[#BE968E]" />
+                                    ))}
+                                </div>
+                            </div>
+                            <span className="text-sm text-gray-400">4 months ago</span>
                         </div>
-                        <div className="flex items-center gap-1 mb-3">
-                            {[1, 2, 3, 4, 5].map(s => (
-                                <Star key={s} className="w-3 h-3 fill-orange-400 text-orange-400" />
-                            ))}
-                        </div>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+
+                        {/* Correction: In the screenshot, the stars next to "Alex Daewn" are clearly a rose/brown color, same as the main star. */}
+
+                        <p className="text-gray-500 text-sm leading-relaxed mt-2">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                            sed diam nonummy dolor sit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
                         </p>
                     </div>
                 ))}
             </div>
 
-            <div className="mt-8 text-center">
-                <Button variant="ghost" className="text-gray-500 hover:text-gray-900">
+            <div className="mt-10 flex justify-center">
+                {/* "View More Comments" button logic 
+                     Design shows a light button, centered. 
+                 */}
+                <Button variant="ghost" className="bg-[#F9F3F1] hover:bg-[#ebdcd6] text-[#BE968E] font-medium px-8 py-2 rounded-lg">
                     View More Comments
                 </Button>
             </div>
-        </div>
+        </section>
     );
 };
 

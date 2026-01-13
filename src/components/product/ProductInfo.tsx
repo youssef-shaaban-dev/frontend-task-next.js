@@ -1,95 +1,147 @@
 "use client";
-import React, { useState } from 'react';
-import { Minus, Plus, Share2, Heart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+
+import { Button } from "@/components/ui/button";
+import { Heart, Minus, Plus, ShoppingBag } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+
+const COLORS = [
+    { name: "Red", value: "#ef4444" },
+    { name: "Light Blue", value: "#bfdbfe" }, // approximate
+    { name: "Gold", value: "#eab308" },
+    { name: "Blue", value: "#3b82f6" },
+    { name: "Dark Grey", value: "#4b5563" }
+];
 
 const ProductInfo = () => {
     const [quantity, setQuantity] = useState(1);
-    const [selectedColor, setSelectedColor] = useState('blue');
-    // const [selectedSize, setSelectedSize] = useState('M');
+    const [selectedColor, setSelectedColor] = useState(COLORS[1].name); // Light Blue default
+
+    const increment = () => setQuantity(q => q + 1);
+    const decrement = () => setQuantity(q => Math.max(1, q - 1));
 
     return (
-        <div className="flex flex-col gap-6">
-            <div className="flex justify-between items-start">
-                <div>
-                    <div className="text-xs font-semibold text-[#D4A373] bg-[#D4A373]/10 px-2 py-1 rounded w-fit mb-2">
-                        NEW ARRIVAL
+        <div className="flex flex-col gap-6 font-poppins">
+            {/* Header */}
+            <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                    <span className="rounded-full border border-pink px-4 py-1 text-sm text-pink">
+                        T-Shirt
+                    </span>
+                    <div className="flex gap-2">
+                        <button className="rounded-full border  border-pink  p-2 hover:bg-gray-50">
+                            <ShoppingBag className="h-5 w-5 text-pink" />
+                        </button>
+                        <button className="rounded-full border  border-pink   p-2 hover:bg-gray-50">
+                            <Heart className="h-5 w-5 text-pink" />
+                        </button>
                     </div>
-                    <h1 className="text-3xl font-bold text-gray-900">
-                        J.VER Men Shirts Solid Long Sleeve Stretch Wrinkle-Free With Blue
-                    </h1>
                 </div>
-                <div className="flex gap-2">
-                    <button className="p-2 hover:bg-gray-100 rounded-full text-gray-500"><Share2 className="w-5 h-5" /></button>
-                    <button className="p-2 hover:bg-gray-100 rounded-full text-gray-500"><Heart className="w-5 h-5" /></button>
-                </div>
-            </div>
 
-            {/* Price */}
-            <div className="flex items-center gap-3">
-                <span className="text-2xl font-bold text-gray-900">$309.00</span>
-                <span className="text-lg text-gray-400 line-through">$400.00</span>
+                <h5 className="text-2xl font-semibold leading-tight text-black w-4/5">
+                    J.VER Man Shirts Solid Long Sleeve Stretch Wrinkle-Free With Blue
+                </h5>
+
+                <div className="flex items-baseline gap-3">
+                    <span className="text-2xl font-bold text-gray-900">$300.00</span>
+                    <span className="text-lg text-gray-400 line-through">$360.00</span>
+                </div>
+                <p className="text-sm text-[#333333]">This price is exclusive of taxes.</p>
             </div>
 
             {/* Description */}
-            <p className="text-gray-500 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-            </p>
+            <div className="text-black text-sm leading-relaxed space-y-2">
+                <p>Lorem ipsum dolor sit , consectetuer adipiscing elit, sed diam nonummy</p>
+                <p>Lorem ipsum dolor sit amet, diam nonummy</p>
+            </div>
+
+            <div className="h-px w-full bg-gray-100" />
 
             {/* Selectors */}
-            <div className="grid grid-cols-2 gap-4">
-                <div>
-                    <label className="text-sm font-semibold text-gray-900 mb-2 block">Color</label>
-                    <button className="w-full flex items-center justify-between border rounded-lg px-3 py-2 text-sm text-gray-600">
-                        <span>Blue</span>
-                    </button>
-                    {/* Color Swatches */}
-                    <div className="flex gap-2 mt-3">
-                        {['red', 'blue', 'green', 'black'].map(color => (
-                            <button
-                                key={color}
-                                onClick={() => setSelectedColor(color)}
-                                className={`w-8 h-8 rounded-full border-2 ${selectedColor === color ? 'border-gray-900' : 'border-transparent'} p-0.5`}
-                            >
-                                <div className={`w-full h-full rounded-full bg-${color}-500`} style={{ backgroundColor: color === 'black' ? '#333' : color }} />
-                            </button>
-                        ))}
+            <div className="flex flex-col gap-6 w-1/2">
+                <div className="flex-1 space-y-2">
+                    <label className="text-sm font-medium text-gray-900">Type</label>
+                    <div className="relative">
+                        <select className="w-full appearance-none rounded-xl border bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-[#BE968E]">
+                            <option>Cotton</option>
+                            <option>Polyester</option>
+                        </select>
+                        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                        </div>
                     </div>
                 </div>
-
-                <div>
-                    <label className="text-sm font-semibold text-gray-900 mb-2 block">Size</label>
-                    <button className="w-full flex items-center justify-between border rounded-lg px-3 py-2 text-sm text-gray-600">
-                        <span>M</span>
-                    </button>
-                    {/* Size options implementation can be expanded */}
+                <div className="flex-1 space-y-2">
+                    <label className="text-sm font-medium text-gray-900">Size</label>
+                    <div className="relative">
+                        <select className="w-full appearance-none rounded-xl border bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-[#BE968E]">
+                            <option>2XL</option>
+                            <option>XL</option>
+                            <option>L</option>
+                            <option>M</option>
+                        </select>
+                        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t mt-2">
-                {/* Quantity */}
-                <div className="flex items-center border rounded-lg h-12 w-32">
-                    <button
-                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-gray-900"
-                    >
-                        <Minus className="w-4 h-4" />
-                    </button>
-                    <div className="flex-1 text-center font-medium">{quantity.toString().padStart(2, '0')}</div>
-                    <button
-                        onClick={() => setQuantity(quantity + 1)}
-                        className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-gray-900"
-                    >
-                        <Plus className="w-4 h-4" />
-                    </button>
+            {/* Colors */}
+            <div className="space-y-3">
+                <span className="text-lg font-medium text-gray-900">Colors</span>
+                <div className="flex gap-4">
+                    {COLORS.map((color) => (
+                        <button
+                            key={color.name}
+                            onClick={() => setSelectedColor(color.name)}
+                            className={cn(
+                                "flex flex-col items-center gap-2"
+                            )}
+                        >
+                            <div className={cn(
+                                "h-8 w-8 rounded-full shadow-sm transition-all relative flex items-center justify-center",
+                                selectedColor === color.name && "ring-2 ring-gray-300 ring-offset-2"
+                            )}
+                                style={{ backgroundColor: color.value }}
+                            >
+                                {selectedColor === color.name && (
+                                    // Optional checkmark or inner dot if needed, design seems to just have ring
+                                    <span className="sr-only">Selected</span>
+                                )}
+                            </div>
+                            {selectedColor === color.name && (
+                                <span className="text-xs text-gray-600">{color.name}</span>
+                            )}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Quantity & Add to Cart */}
+            <div className="space-y-3 pt-4">
+                <div className="flex items-center justify-between">
+                    <span className="text-lg font-medium text-gray-900">Quantity <span className="text-sm font-normal text-gray-400">($300.00 for Piece)</span></span>
                 </div>
 
-                <div className="flex-1 flex items-center gap-4">
-                    <span className="text-xl font-bold min-w-[80px]">${(309 * quantity).toFixed(2)}</span>
-                    <Button className="flex-1 h-12 bg-[#C28562] hover:bg-[#a87051] text-white text-base rounded-lg">
-                        Add to Cart
-                    </Button>
+                <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4 rounded-xl border bg-gray-50 px-4 py-2">
+                        <button onClick={decrement} className="rounded bg-white p-1 hover:bg-gray-100">
+                            <Minus className="h-4 w-4 text-gray-600" />
+                        </button>
+                        <span className="text-lg font-medium w-6 text-center">{String(quantity).padStart(2, '0')}</span>
+                        <button onClick={increment} className="rounded bg-white p-1 hover:bg-gray-100">
+                            <Plus className="h-4 w-4 text-gray-600" />
+                        </button>
+                    </div>
+                    <span className="text-xl font-bold text-gray-900">${(300 * quantity).toFixed(2)}</span>
+
+                    <div className="flex-1">
+                        <Button className="w-3/4  h-12 bg-[#BE968E] hover:bg-pink text-white text-lg rounded-xl gap-2">
+                            Add To Cart
+                            <ShoppingBag className="h-5 w-5" />
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
