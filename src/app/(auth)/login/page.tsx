@@ -18,6 +18,7 @@ const LoginPage = () => {
             </h1>
 
             <LoginForm handleLoginSuccess={handleLoginSuccess} />
+            
             {showVerifyModal && <VerifyModal />}
         </div>
     )

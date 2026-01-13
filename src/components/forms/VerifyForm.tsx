@@ -20,7 +20,7 @@ import {
     InputOTPGroup,
     InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { VerifySchema, VerifyFormValues } from "@/lib/validations/authSchema";
+import { VerifySchema, VerifyFormValues } from "@/validations/verifySchema";
 
 const VerifyForm = () => {
     const { mutate: verify, isPending } = useVerify();

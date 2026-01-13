@@ -4,9 +4,9 @@ export interface RegisterData {
   name: string;
   email: string;
   password: string;
-  passwordConfirmation?: string;
+  password_confirmation?: string;
   mobile: string;
-  mobileCountryCode?: string;
+  mobile_country_code?: string;
 }
 export const registerService = async (data: RegisterData) => {
   const response = await apiClient.post("/auth/register", data);
