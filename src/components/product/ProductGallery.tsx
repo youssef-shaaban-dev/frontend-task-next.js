@@ -24,9 +24,9 @@ const ProductGallery = () => {
     };
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 md:gap-6">
             {/* Main Image */}
-            <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-gray-100">
+            <div className="relative aspect-square w-full overflow-hidden rounded-2xl md:rounded-3xl bg-gray-100">
                 <Image
                     src={IMAGES[activeIndex]}
                     alt={`Product image ${activeIndex + 1}`}
@@ -38,24 +38,24 @@ const ProductGallery = () => {
                 {/* Navigation Arrows */}
                 <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
                 >
-                    <ChevronLeft className="h-6 w-6 text-gray-600" />
+                    <ChevronLeft className="h-4 w-4 md:h-6 md:w-6 text-gray-600" />
                 </button>
                 <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[#BE968E] shadow-sm backdrop-blur-sm transition-colors hover:bg-[#a8857d]"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-[#BE968E] shadow-sm backdrop-blur-sm transition-colors hover:bg-[#a8857d]"
                 >
-                    <ChevronRight className="h-6 w-6 text-white" />
+                    <ChevronRight className="h-4 w-4 md:h-6 md:w-6 text-white" />
                 </button>
 
-                {/* Top Bar Indicator (Simulated from design) */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {/* Top Bar Indicator */}
+                <div className="absolute top-3 md:top-4 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2">
                     {IMAGES.map((_, idx) => (
                         <div
                             key={idx}
                             className={cn(
-                                "h-1 w-8 rounded-full transition-colors",
+                                "h-0.5 md:h-1 w-6 md:w-8 rounded-full transition-colors",
                                 idx === activeIndex ? "bg-white" : "bg-white/30"
                             )}
                         />
@@ -63,8 +63,8 @@ const ProductGallery = () => {
                 </div>
             </div>
 
-            {/* Thumbnails */}
-            <div className="flex gap-4 overflow-x-auto pb-2">
+            {/* Thumbnails - Hidden on mobile */}
+            <div className="hidden md:flex gap-4 overflow-x-auto pb-2">
                 {IMAGES.map((img, idx) => (
                     <button
                         key={idx}
@@ -76,8 +76,8 @@ const ProductGallery = () => {
                                 : "border-transparent opacity-70 hover:opacity-100"
                         )}
                     >
-                     
-                     <Image
+
+                        <Image
                             src={img}
                             alt={`Thumbnail ${idx + 1}`}
                             fill

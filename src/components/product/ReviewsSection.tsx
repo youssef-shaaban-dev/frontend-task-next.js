@@ -6,16 +6,16 @@ import { cn } from '@/lib/utils';
 
 const ReviewsSection = () => {
     return (
-        <section className="font-poppins text-black pr-16">
+        <section className="font-poppins text-black pr-0 md:pr-16">
             <h2 className="text-xl font-bold bg-white text-black mb-8 border-b-2 border-[#BE968E] w-fit pb-2">
                 Rating & Reviews
             </h2>
 
-            <div className="flex flex-col lg:flex-row gap-12 items-start justify-between">
+            <div className="flex flex-col lg:flex-row gap-8 md:gap-12 items-start justify-between">
                 {/* Left: Rating Number */}
                 <div className="flex items-end gap-2">
-                    <span className="text-8xl font-medium">4,5</span>
-                    <span className="text-gray-400 text-xl font-medium mb-2">/5</span>
+                    <span className="text-6xl md:text-8xl font-medium">4,5</span>
+                    <span className="text-gray-400 text-lg md:text-xl font-medium mb-2">/5</span>
                 </div>
 
                 {/* Middle: Progress Bars */}
@@ -45,8 +45,8 @@ const ReviewsSection = () => {
                 {/* Right: Total Reviews & Add Comment */}
                 <div className="flex flex-col items-center justify-center gap-4">
                     <div className="text-center ">
-                        <div className="text-sm text-gray-400">Total Reviews</div>
-                        <div className="text-4xl font-bold">3.0K</div>
+                        <div className="text-xs md:text-sm text-gray-400">Total Reviews</div>
+                        <div className="text-3xl md:text-4xl font-bold">3.0K</div>
                     </div>
                     <Button className="bg-[#BE968E] hover:bg-[#a8857d] text-white rounded-lg px-6">
                         Add Comment <span className="ml-2 bg-white/20 rounded-full w-4 h-4 flex items-center justify-center text-[10px]">...</span>

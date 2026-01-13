@@ -29,8 +29,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
 
-      <div className="h-[200px] bg-[#ECECEC66] w-full flex items-center justify-center">
-        <h1 className="text-3xl font-semibold text-black ">Product Details</h1>
+      <div className="h-32 md:h-[200px] bg-[#ECECEC66] w-full flex items-center justify-center">
+        <h1 className="text-2xl md:text-3xl font-semibold text-black ">Product Details</h1>
       </div>
 
       <div className="section-padding">
@@ -38,7 +38,7 @@ export default function Home() {
         <Breadcrumb />
 
         {/* Product Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-12 md:mb-16">
           <ProductGallery />
           <ProductInfo />
         </div>

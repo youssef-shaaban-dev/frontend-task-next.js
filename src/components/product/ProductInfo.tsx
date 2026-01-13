@@ -21,7 +21,7 @@ const ProductInfo = () => {
     const decrement = () => setQuantity(q => Math.max(1, q - 1));
 
     return (
-        <div className="flex flex-col gap-6 font-poppins">
+        <div className="flex flex-col gap-4 md:gap-6 font-poppins">
             {/* Header */}
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -38,13 +38,13 @@ const ProductInfo = () => {
                     </div>
                 </div>
 
-                <h5 className="text-2xl font-semibold leading-tight text-black w-4/5">
+                <h5 className="text-xl md:text-2xl font-semibold leading-tight text-black w-full md:w-4/5">
                     J.VER Man Shirts Solid Long Sleeve Stretch Wrinkle-Free With Blue
                 </h5>
 
-                <div className="flex items-baseline gap-3">
-                    <span className="text-2xl font-bold text-gray-900">$300.00</span>
-                    <span className="text-lg text-gray-400 line-through">$360.00</span>
+                <div className="flex items-baseline gap-2 md:gap-3">
+                    <span className="text-xl md:text-2xl font-bold text-gray-900">$300.00</span>
+                    <span className="text-base md:text-lg text-gray-400 line-through">$360.00</span>
                 </div>
                 <p className="text-sm text-[#333333]">This price is exclusive of taxes.</p>
             </div>
@@ -58,7 +58,7 @@ const ProductInfo = () => {
             <div className="h-px w-full bg-gray-100" />
 
             {/* Selectors */}
-            <div className="flex flex-col gap-6 w-1/2">
+            <div className="flex flex-col gap-4 md:gap-6 w-full md:w-1/2">
                 <div className="flex-1 space-y-2">
                     <label className="text-sm font-medium text-gray-900">Type</label>
                     <div className="relative">
@@ -121,23 +121,23 @@ const ProductInfo = () => {
             {/* Quantity & Add to Cart */}
             <div className="space-y-3 pt-4">
                 <div className="flex items-center justify-between">
-                    <span className="text-lg font-medium text-gray-900">Quantity <span className="text-sm font-normal text-gray-400">($300.00 for Piece)</span></span>
+                    <span className="text-base md:text-lg font-medium text-gray-900">Quantity <span className="text-xs md:text-sm font-normal text-gray-400">($300.00 for Piece)</span></span>
                 </div>
 
-                <div className="flex items-center gap-6">
-                    <div className="flex items-center gap-4 rounded-xl border bg-gray-50 px-4 py-2">
+                <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+                    <div className="flex items-center gap-4 rounded-xl border bg-gray-50 px-4 py-2 w-fit">
                         <button onClick={decrement} className="rounded bg-white p-1 hover:bg-gray-100">
                             <Minus className="h-4 w-4 text-gray-600" />
                         </button>
-                        <span className="text-lg font-medium w-6 text-center">{String(quantity).padStart(2, '0')}</span>
+                        <span className="text-base md:text-lg font-medium w-6 text-center">{String(quantity).padStart(2, '0')}</span>
                         <button onClick={increment} className="rounded bg-white p-1 hover:bg-gray-100">
                             <Plus className="h-4 w-4 text-gray-600" />
                         </button>
                     </div>
-                    <span className="text-xl font-bold text-gray-900">${(300 * quantity).toFixed(2)}</span>
+                    <span className="text-lg md:text-xl font-bold text-gray-900">${(300 * quantity).toFixed(2)}</span>
 
-                    <div className="flex-1">
-                        <Button className="w-3/4  h-12 bg-[#BE968E] hover:bg-pink text-white text-lg rounded-xl gap-2">
+                    <div className="flex-1 w-full md:w-auto">
+                        <Button className="w-full md:w-3/4 h-11 md:h-12 bg-[#BE968E] hover:bg-pink text-white text-base md:text-lg rounded-xl gap-2">
                             Add To Cart
                             <ShoppingBag className="h-5 w-5" />
                         </Button>
