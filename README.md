@@ -1,64 +1,179 @@
-# Frontend Task - Next.js
+# 🛍️ Next.js Authentication Flow
 
-## Project Overview
-This project implements a Frontend Task using Next.js, including a full Authentication flow and a pixel-perfect Product Details page.
+## 📁 Project Structure
 
-## Features
-- **Authentication**:
-  - Register (Name, Email, Password, Mobile)
-  - Verify Account (OTP)
-  - Login (Email, Password)
-  - Dashboard (Protected Route)
-- **UI Implementation**:
-  - Pixel-perfect Product Details Page (Home)
-  - Responsive Design (Desktop & Mobile)
-  - Modern UI components using Tailwind CSS
+```
+nextjs-task/
+├── public/
+│   ├── items/          # Product slider images
+│   ├── products/       # Product gallery images
+│   └── logo.png        # Brand logo
+├── src/
+│   ├── app/            # Next.js App Router
+│   │   ├── dashboard/  # User dashboard
+│   │   ├── login/      # Login page
+│   │   ├── register/   # Registration page
+│   │   └── page.tsx    # Product details page
+│   ├── components/
+│   │   ├── forms/      # Form components
+│   │   ├── product/    # Product-related components
+│   │   ├── shared/     # Shared components (Navbar, Footer)
+│   │   └── ui/         # Base UI components
+│   ├── hooks/          # Custom React hooks
+│   ├── services/       # API service functions
+│   ├── types/          # TypeScript type definitions
+│   ├── validations/    # Zod validation schemas
+│   └── lib/            # Utility functions
+└── package.json
+```
 
-## Tech Stack
-- Next.js 15+ (App Router)
-- React 19
-- Tailwind CSS 4
-- React Hook Form + Zod (Validation)
-- Lucide React (Icons)
-- Axios (API Integration)
+## ✨ Features
 
-## Setup Instructions
+### 🔐 Authentication System
+- **User Registration** with email verification
+- **Login/Logout** functionality
+- **Password validation** with strength requirements
+- **International phone number** validation using `libphonenumber-js`
+- **JWT token management** with secure storage
+- **User dashboard** with profile overview
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository-url>
-    cd nextjs-task
-    ```
+### 🛒 Product Pages
+- **Product Gallery** with image carousel and thumbnail navigation
+- **Product Details** with dynamic pricing, size/type selectors, and color swatches
+- **Reviews & Ratings** section with visual progress bars
+- **Similar Items Slider** powered by Swiper.js
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+## 🚀 Getting Started
 
-3.  **Environment Setup:**
-    Ensure you have a `.env` file with:
-    ```env
-    NEXT_PUBLIC_API_BASE_URL= https://tinytales.trendline.marketing/api
-    ```
+### Prerequisites
+- Node.js 18+ 
+- npm or 
 
-4.  **Run Development Server:**
-    ```bash
-    npm run dev
-    ```
-    Open [http://localhost:3000](http://localhost:3000) to view the application.
+### Installation
 
-5.  **Build for Production:**
-    ```bash
-    npm run build
-    npm start
-    ```
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd nextjs-task
+```
 
-## Project Structure
-- `src/app`: App Router pages and layouts.
-- `src/components/forms`: Auth forms (Register, Login, Verify).
-- `src/components/product`: Product Page components (Navbar, Gallery, Info, etc.).
-- `src/services`: API service functions.
-- `src/hooks`: Custom hooks (useLogin, useRegister, useVerify).
+2. **Install dependencies**
+```bash
+npm install
+```
 
-## Notes
-- Testing Verification Code: `123456`
+3. **Set up environment variables**
+Create a `.env.local` file in the root directory:
+```env
+
+NEXT_PUBLIC_API_URL= https://tinytales.trendline.marketing/api
+```
+
+4. **Run the development server**
+```bash
+npm run dev
+```
+
+5. **Open your browser**
+Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📦 Tech Stack
+
+### Core
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **React 18** - UI library
+
+### Styling
+- **Tailwind CSS** - Utility-first CSS framework
+- **Poppins Font** - Google Fonts integration
+- **Custom Components** - Reusable UI components
+
+### State Management & Data Fetching
+- **React Query (TanStack Query)** - Server state management
+- **Axios** - HTTP client with interceptors
+
+### Form Handling & Validation
+- **React Hook Form** - Performant form library
+- **Zod** - TypeScript-first schema validation
+- **libphonenumber-js** - International phone validation
+
+### UI Libraries
+- **Shadcn ui** - modern ui library
+- **Swiper.js** - Modern slider/carousel
+- **Lucide React** - Beautiful icon library
+- **Sonner** - Toast notifications
+
+
+## 🎯 Key Components
+
+### Product Components
+- **ProductGallery** - Image carousel with thumbnails
+- **ProductInfo** - Product details, selectors, and cart actions
+- **ReviewsSection** - Ratings and customer reviews
+- **SimilarItems** - Responsive product slider
+
+### Shared Components
+- **Navbar** - Responsive navigation with mobile menu
+- **Footer** - Dark-themed footer with social links
+- **Sidebar** - Dashboard navigation
+
+### Form Components
+- **LoginForm** - User authentication
+- **RegisterForm** - New user registration
+- **VerifyForm** - Email verification
+
+## 🔧 Available Scripts
+
+```bash
+# Development
+npm run dev          # Start development server
+
+# Production
+npm run build        # Build for production
+npm start            # Start production server
+
+# Code Quality
+npm run lint         # Run ESLint
+```
+
+## 🌐 API Integration
+
+The application integrates with a backend API for:
+- User authentication (register, login, verify, logout)
+- User data management
+- Product information
+- Shopping cart operations
+
+API client configuration with interceptors for:
+- Request/response logging
+- Error handling with toast notifications
+- JWT token management
+
+## 📱 Responsive Breakpoints
+
+- **Mobile**: < 640px
+- **Tablet**: 640px - 1023px
+- **Desktop**: ≥ 1024px
+
+Custom breakpoints for Swiper slider:
+- 480px, 640px, 768px, 1024px, 1280px
+
+## 🎨 Design System
+
+### Colors
+- **Primary**: #BE968E (Rose Gold)
+- **Text**: #333333, #000000
+- **Background**: #FFFFFF, #ECECEC66
+
+### Typography
+- **Font Family**: Poppins
+- **Weights**: 100-900
+
+## 👨‍💻 Author
+
+**Youssef Shaaban**
+
+---
+
+Built with ❤️ using Next.js and modern web technologies
