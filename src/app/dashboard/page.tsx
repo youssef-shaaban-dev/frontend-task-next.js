@@ -1,8 +1,8 @@
 
-const page = () => {
+const DashboardPage = () => {
     return (
-        <div>page</div>
+        <div>DashboardPage</div>
     )
 }
 
-export default page
+export default DashboardPage
