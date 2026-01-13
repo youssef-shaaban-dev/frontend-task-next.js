@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -26,6 +27,7 @@ apiClient.interceptors.response.use(
   (error) => {
     if (error.response) {
       console.error(error.response.data);
+      toast.error(error.response.data.message);
     }
     return Promise.reject(error);
   }

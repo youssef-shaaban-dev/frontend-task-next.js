@@ -5,6 +5,7 @@ export const RegisterSchema = z
     .object({
         name: z.string().min(2, "Name must be at least 2 characters"),
         email: z.string().email("Invalid email address"),
+
         password: z
             .string()
             .min(8, "Password must be at least 8 characters")
@@ -13,15 +14,18 @@ export const RegisterSchema = z
             .regex(/[0-9]/, "Password must contain at least one number")
             .regex(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, "Password must contain at least one special character"),
         password_confirmation: z.string().min(8),
+
         mobile: z
             .string()
             .regex(/^[0-9]+$/, "Mobile number must contain only numbers"),
         mobile_country_code: z.string().regex(/^\+\d+$/, "Invalid country code (e.g. +20)"),
     })
+
     .refine((data) => data.password === data.password_confirmation, {
         message: "Passwords do not match",
         path: ["password_confirmation"],
     })
+
     .superRefine((data, ctx) => {
         const fullNumber = `${data.mobile_country_code}${data.mobile}`;
         try {

@@ -1,21 +1,24 @@
 "use client";
 import { loginService } from "@/services/loginService"
+import { LoginRequest } from "@/types";
 import { useMutation } from "@tanstack/react-query"
-import { LoginData } from '../services/loginService';
 import toast from "react-hot-toast";
+
 import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
     const router = useRouter();
     return useMutation({
-        mutationFn: (data: LoginData) => loginService(data),
+        mutationFn: (data: LoginRequest) => loginService(data),
         onSuccess: (data) => {
-            localStorage.setItem("token", data.token);
-            const userName = data?.data?.user?.name || data?.user?.name || "User";
-            localStorage.setItem("userName", userName);
-
-            toast.success("تم تسجيل الدخول بنجاح");
+            if (data?.data?.token) {
+                localStorage.setItem("token", data.data.token);
+            }
+            if (data?.data?.name) {
+                localStorage.setItem("userName", data.data.name);
+            }
+            toast.success(data.message);
             router.push("/dashboard");
-        }
+        },
     })
 }

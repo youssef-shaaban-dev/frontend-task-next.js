@@ -8,8 +8,5 @@ export const useResendCodeVerfication = () => {
         onSuccess: () => {
             toast.success('Code resend successfully');
         },
-        onError: () => {
-            toast.error('Code resend failed');
-        }
     })
 }

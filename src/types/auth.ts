@@ -25,12 +25,12 @@ export interface LoginRequest {
 
 
 export interface RegisterRequest {
-  name: string;
-  email: string;
-  password: string;
-  password_confirmation?: string;
-  mobile: string;
-  mobile_country_code?: string;
+    name: string;
+    email: string;
+    password: string;
+    password_confirmation?: string;
+    mobile: string;
+    mobile_country_code?: string;
 }
 
 
