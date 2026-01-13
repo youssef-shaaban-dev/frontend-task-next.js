@@ -10,6 +10,8 @@ export const apiClient = axios.create({
   },
 });
 
+// Single Responsibility Principle
+
 apiClient.interceptors.request.use((config) => {
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
