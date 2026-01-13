@@ -3,4 +3,6 @@ export { registerService } from "./registerService";
 export { verifyService } from "./verifyService";
 export { resendCodeVerficationService } from "./resendCodeVerficationService";
 export { userService } from "./userService";
+export { logoutService } from "./logoutService";
+
 

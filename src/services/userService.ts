@@ -1,6 +1,7 @@
-import axios from "axios";
+import apiClient from "@/lib/apiClient";
+import { AuthResponse } from "@/types";
 
 export const userService = async () => {
-    const response = await axios.get('/auth/user-data');
+    const response = await apiClient.get<AuthResponse>('/auth/user-data');
     return response.data;
 }
