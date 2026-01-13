@@ -1,6 +1,6 @@
-import axios from "axios";
+import apiClient from "@/lib/apiClient";
 
 export const resendCodeVerficationService = async () => {
-    const response = await axios.post('/auth/verify-email/resend-code');
+    const response = await apiClient.post('/auth/verify-email/resend-code');
     return response.data;
 }

@@ -35,5 +35,5 @@ export interface RegisterRequest {
 
 
 export interface VerifyData {
-    verificationCode: string;
+    code: string;
 }

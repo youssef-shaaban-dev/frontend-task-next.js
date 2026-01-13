@@ -3,9 +3,6 @@
 import { useVerify } from "@/hooks/useVerify";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react";
-import { useRouter } from "next/navigation";
-
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -22,9 +19,11 @@ import {
 } from "@/components/ui/input-otp";
 import { VerifySchema, VerifyFormValues } from "@/validations/verifySchema";
 
+import { useResendCodeVerfication } from "@/hooks/useResendCodeVerfication";
+
 const VerifyForm = () => {
     const { mutate: verify, isPending } = useVerify();
-    const router = useRouter();
+    const { mutate: resendCode, isPending: isResending } = useResendCodeVerfication();
 
     const form = useForm<VerifyFormValues>({
         resolver: zodResolver(VerifySchema),
@@ -34,20 +33,11 @@ const VerifyForm = () => {
     });
 
     const onSubmit = (data: VerifyFormValues) => {
-        verify({ verificationCode: data.code });
+        verify({ code: data.code });
     };
 
     return (
         <div className="relative">
-            {/* Close Button */}
-            <button
-                onClick={() => router.push('/login')}
-                className="absolute -top-12 right-0 p-2 text-gray-500 hover:text-gray-900"
-                aria-label="Close"
-            >
-                <X className="w-6 h-6" />
-            </button>
-
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-4">
                     <FormField
@@ -80,6 +70,17 @@ const VerifyForm = () => {
                     >
                         {isPending ? "Verifying..." : "Verify"}
                     </Button>
+
+                    <div className="text-center text-sm">
+                        Didn't receive the code?
+                        <Button
+                            onClick={() => resendCode()}
+                            disabled={isResending}
+                            className="font-semibold text-white hover:underline disabled:opacity-50 mx-2"
+                        >
+                            {isResending ? "Resending..." : "Resend Code"}
+                        </Button>
+                    </div>
                 </form>
             </Form>
         </div>

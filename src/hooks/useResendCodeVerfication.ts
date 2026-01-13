@@ -5,8 +5,8 @@ import toast from "react-hot-toast";
 export const useResendCodeVerfication = () => {
     return useMutation({
         mutationFn: resendCodeVerficationService,
-        onSuccess: () => {
-            toast.success('Code resend successfully');
+        onSuccess: (data) => {
+            toast.success(data.message);
         },
     })
 }

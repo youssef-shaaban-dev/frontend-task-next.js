@@ -10,12 +10,6 @@ export const useVerify = () => {
     return useMutation({
         mutationFn: (data: VerifyData) => verifyService(data),
         onSuccess: (data) => {
-            if (data?.data?.token) {
-                localStorage.setItem("token", data.data.token);
-            }
-            if (data?.data?.name) {
-                localStorage.setItem("userName", data.data.name);
-            }
             toast.success(data.message);
             router.push("/dashboard");
         },

@@ -9,8 +9,8 @@ export const useRegister = () => {
   const router = useRouter();
   return useMutation({
     mutationFn: (data: RegisterRequest) => registerService(data),
-    onSuccess: () => {
-      toast.success("تم إنشاء الحساب بنجاح");
+    onSuccess: (data) => {
+      toast.success(data.message);
       router.push("/login");
     },
   });

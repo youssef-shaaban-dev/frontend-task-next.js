@@ -7,10 +7,8 @@ export const useLogout = () => {
     const router = useRouter();
     return useMutation({
         mutationFn: logoutService,
-        onSuccess: () => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("userName");
-            toast.success("Logout successfully");
+        onSuccess: (data) => {
+            toast.success(data.message);
             router.push("/login");
         },
     })

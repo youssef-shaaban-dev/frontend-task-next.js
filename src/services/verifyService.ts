@@ -3,6 +3,6 @@ import { AuthResponse, VerifyData } from "@/types";
 
 
 export const verifyService = async (data: VerifyData) => {
-    const response = await apiClient.post<AuthResponse>("/auth/verify-account", data);
+    const response = await apiClient.post<AuthResponse>("/auth/verify-email", data);
     return response.data;
 };
